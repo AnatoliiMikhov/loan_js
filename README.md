@@ -4,4 +4,4 @@
 
 ## technical task source
 
-<a href="https://docs.google.com/document/d/1CjrqmuO8sdrEL8XbQjfSsK4_kcnxD_xAnoCUR66RwVA/edit" target="\_blank" rel="noopener>link to technical task source</a>
+https://docs.google.com/document/d/1CjrqmuO8sdrEL8XbQjfSsK4_kcnxD_xAnoCUR66RwVA/edit
