@@ -37,6 +37,9 @@ export default class MiniSlider extends Slider {
 
 	init() {
 		this.container.style.cssText = `
+			position: relative;
+			max-width: 100%;
+			max-height: 100%;
 			display: flex;
 			flex-wrap: wrap;
 			overflow: hidden;

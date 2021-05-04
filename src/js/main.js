@@ -25,13 +25,13 @@ window.addEventListener('DOMContentLoaded', () => {
 		container: '.modules__content-slider',
 		prev: '.modules__info-btns .slick-prev',
 		next: '.modules__info-btns .slick-next',
-		activeClass: '.card-active',
+		activeClass: 'card-active',
 		animate: true,
 	});
 	modulesSlider.init();
 
 	const feedSlider = new MiniSlider({
-		container: '.feed__slider',
+		container: '.slider-feed__wrapper',
 		prev: '.feed__slider .slick-prev',
 		next: '.feed__slider .slick-next',
 		activeClass: 'feed__item-active',
