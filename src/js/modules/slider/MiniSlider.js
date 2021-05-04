@@ -22,17 +22,20 @@ export default class MiniSlider extends Slider {
 		}
 	}
 
-	bindTriggers() {
-		this.next.addEventListener('click', () => {
-			this.container.appendChild(this.slides[0]);
-			this.decorizeSlides();
-		});
+	nextSlide() {
+		this.container.appendChild(this.slides[0]);
+		this.decorizeSlides();
+	}
 
-		this.prev.addEventListener('click', () => {
-			let active = this.slides[this.slides.length - 1];
-			this.container.insertBefore(active, this.slides[0]);
-			this.decorizeSlides();
-		});
+	prevSlide() {
+		let active = this.slides[this.slides.length - 1];
+		this.container.insertBefore(active, this.slides[0]);
+		this.decorizeSlides();
+	}
+
+	bindTriggers() {
+		this.next.addEventListener('click', () => this.nextSlide());
+		this.prev.addEventListener('click', () => this.prevSlide());
 	}
 
 	init() {
