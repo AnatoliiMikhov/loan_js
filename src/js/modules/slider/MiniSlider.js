@@ -3,6 +3,8 @@ import Slider from './slider';
 export default class MiniSlider extends Slider {
 	constructor(container, prev, next, activeClass, animate, autoplay) {
 		super(container, prev, next, activeClass, animate, autoplay);
+
+		this.autoplayInterval = null;
 	}
 
 	decorizeSlides() {
@@ -16,9 +18,13 @@ export default class MiniSlider extends Slider {
 
 		this.slides[0].classList.add(this.activeClass);
 
-		if (this.animate) {
-			this.slides[0].querySelector('.card__title').style.opacity = '1';
-			this.slides[0].querySelector('.card__controls-arrow').style.opacity = '1';
+		try {
+			if (this.animate) {
+				this.slides[0].querySelector('.card__title').style.opacity = '1';
+				this.slides[0].querySelector('.card__controls-arrow').style.opacity = '1';
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	}
 
@@ -38,10 +44,12 @@ export default class MiniSlider extends Slider {
 		this.prev.addEventListener('click', () => this.prevSlide());
 	}
 
+	autoplayAnimation() {
+		this.autoplayInterval = setInterval(() => this.nextSlide(), 2000);
+	}
+
 	init() {
 		this.container.style.cssText = `
-			position: relative;
-			max-width: 100%;
 			max-height: 100%;
 			display: flex;
 			flex-wrap: wrap;
@@ -50,5 +58,21 @@ export default class MiniSlider extends Slider {
 		`;
 		this.decorizeSlides();
 		this.bindTriggers();
+
+		try {
+			if (this.autoplay) {
+				this.autoplayAnimation();
+
+				this.container.addEventListener('mouseleave', () => this.autoplayAnimation());
+				this.next.addEventListener('mouseleave', () => this.autoplayAnimation());
+				this.prev.addEventListener('mouseleave', () => this.autoplayAnimation());
+
+				this.container.addEventListener('mouseenter', () => clearInterval(this.autoplayInterval));
+				this.next.addEventListener('mouseenter', () => clearInterval(this.autoplayInterval));
+				this.prev.addEventListener('mouseenter', () => clearInterval(this.autoplayInterval));
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	}
 }

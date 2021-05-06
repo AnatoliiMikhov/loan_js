@@ -4,7 +4,7 @@ export default class Slider {
 		btns = null,
 		next = null,
 		prev = null,
-		activeClass = null,
+		activeClass = '',
 		animate = false,
 		autoplay = false,
 	} = {}) {
