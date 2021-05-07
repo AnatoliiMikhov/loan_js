@@ -3,6 +3,8 @@ import MainSlider from './modules/slider/MainSlider';
 import MiniSlider from './modules/slider/MiniSlider';
 // video player
 import VideoPlayer from './modules/playVideo';
+// Difference
+import Difference from './modules/difference';
 
 window.addEventListener('DOMContentLoaded', () => {
 	/* -------------------------------------------------------------------------- */
@@ -46,3 +48,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	const player = new VideoPlayer('.showup .play', '.overlay');
 	player.init();
 });
+
+/* -------------------------------------------------------------------------- */
+/*                                 Difference                                 */
+/* -------------------------------------------------------------------------- */
+new Difference('.officerold', '.officernew', '.officer__card-item').init();
