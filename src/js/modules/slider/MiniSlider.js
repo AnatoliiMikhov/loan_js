@@ -29,13 +29,14 @@ export default class MiniSlider extends Slider {
 	}
 
 	nextSlide() {
-		this.container.appendChild(this.slides[0]);
+		this.container.append(this.slides[0]);
 		this.decorizeSlides();
 	}
 
 	prevSlide() {
 		let active = this.slides[this.slides.length - 1];
-		this.container.insertBefore(active, this.slides[0]);
+		// this.container.insertBefore(active, this.slides[0]);
+		this.container.prepend(active);
 		this.decorizeSlides();
 	}
 
