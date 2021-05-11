@@ -5,6 +5,8 @@ import MiniSlider from './modules/slider/MiniSlider';
 import VideoPlayer from './modules/playVideo';
 // Difference
 import Difference from './modules/difference';
+// Forms
+import Forms from './modules/forms/forms';
 
 window.addEventListener('DOMContentLoaded', () => {
 	/* -------------------------------------------------------------------------- */
@@ -53,3 +55,8 @@ window.addEventListener('DOMContentLoaded', () => {
 /*                                 Difference                                 */
 /* -------------------------------------------------------------------------- */
 new Difference('.officerold', '.officernew', '.officer__card-item').init();
+
+/* -------------------------------------------------------------------------- */
+/*                                    Forms                                   */
+/* -------------------------------------------------------------------------- */
+new Forms('.form', 'assets/question.php').init();
