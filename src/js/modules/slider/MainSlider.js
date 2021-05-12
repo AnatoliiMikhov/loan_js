@@ -44,24 +44,22 @@ export default class MainSlider extends Slider {
 		this.showSlides((this.slideIndex += n));
 	}
 
-	bindTriggers(trigger, n) {
+	bindTriggers(trigger, n = 1) {
 		trigger.forEach((btn) => {
-			btn.addEventListener('click', (e) => {
-				e.stopPropagation();
-				e.preventDefault();
-				this.moveSlide(n);
-			});
-		});
-	}
-
-	goToFirstSlide() {
-		this.linkToFirstSlide.forEach((link) => {
-			link.addEventListener('click', (e) => {
-				e.stopPropagation();
-				e.preventDefault();
-				this.slideIndex = 1;
-				this.showSlides(this.slideIndex);
-			});
+			if (btn.parentNode.matches('.sidecontrol') && !btn.classList.contains('next')) {
+				btn.addEventListener('click', (e) => {
+					e.stopPropagation();
+					e.preventDefault();
+					this.slideIndex = n;
+					this.showSlides(this.slideIndex);
+				});
+			} else {
+				btn.addEventListener('click', (e) => {
+					e.stopPropagation();
+					e.preventDefault();
+					this.moveSlide(n);
+				});
+			}
 		});
 	}
 
@@ -72,11 +70,11 @@ export default class MainSlider extends Slider {
 			} catch (error) {}
 
 			this.showSlides(this.slideIndex);
-			this.goToFirstSlide();
 
 			this.bindTriggers(this.btns, 1);
 			this.bindTriggers(this.nextModuleBtns, 1);
 			this.bindTriggers(this.prevModuleBtns, -1);
+			this.bindTriggers(this.linkToFirstSlide, 1);
 		}
 	}
 }
