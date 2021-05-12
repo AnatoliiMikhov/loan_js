@@ -46,20 +46,16 @@ export default class MainSlider extends Slider {
 
 	bindTriggers(trigger, n = 1) {
 		trigger.forEach((btn) => {
-			if (btn.parentNode.matches('.sidecontrol') && !btn.classList.contains('next')) {
-				btn.addEventListener('click', (e) => {
-					e.stopPropagation();
-					e.preventDefault();
+			btn.addEventListener('click', (e) => {
+				e.stopPropagation();
+				e.preventDefault();
+				if (btn.parentNode.matches('.sidecontrol') && !btn.classList.contains('next')) {
 					this.slideIndex = n;
 					this.showSlides(this.slideIndex);
-				});
-			} else {
-				btn.addEventListener('click', (e) => {
-					e.stopPropagation();
-					e.preventDefault();
+				} else {
 					this.moveSlide(n);
-				});
-			}
+				}
+			});
 		});
 	}
 
