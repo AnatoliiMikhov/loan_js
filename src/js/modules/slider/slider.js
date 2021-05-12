@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 export default class Slider {
 	constructor({
 		container = null,
@@ -9,7 +10,11 @@ export default class Slider {
 		autoplay = false,
 	} = {}) {
 		this.container = document.querySelector(container);
-		this.slides = this.container.children;
+
+		try {
+			this.slides = this.container.children;
+		} catch (error) {}
+
 		this.btns = document.querySelectorAll(btns);
 		this.prev = document.querySelector(prev);
 		this.next = document.querySelector(next);

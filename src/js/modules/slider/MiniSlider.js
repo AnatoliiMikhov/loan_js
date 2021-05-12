@@ -50,30 +50,32 @@ export default class MiniSlider extends Slider {
 	}
 
 	init() {
-		this.container.style.cssText = `
+		try {
+			this.container.style.cssText = `
 			max-height: 100%;
 			display: flex;
 			flex-wrap: wrap;
 			overflow: hidden;
 			align-items: flex-start;
 		`;
-		this.decorizeSlides();
-		this.bindTriggers();
+			this.decorizeSlides();
+			this.bindTriggers();
 
-		try {
-			if (this.autoplay) {
-				this.autoplayAnimation();
+			try {
+				if (this.autoplay) {
+					this.autoplayAnimation();
 
-				this.container.addEventListener('mouseleave', () => this.autoplayAnimation());
-				this.next.addEventListener('mouseleave', () => this.autoplayAnimation());
-				this.prev.addEventListener('mouseleave', () => this.autoplayAnimation());
+					this.container.addEventListener('mouseleave', () => this.autoplayAnimation());
+					this.next.addEventListener('mouseleave', () => this.autoplayAnimation());
+					this.prev.addEventListener('mouseleave', () => this.autoplayAnimation());
 
-				this.container.addEventListener('mouseenter', () => clearInterval(this.autoplayInterval));
-				this.next.addEventListener('mouseenter', () => clearInterval(this.autoplayInterval));
-				this.prev.addEventListener('mouseenter', () => clearInterval(this.autoplayInterval));
+					this.container.addEventListener('mouseenter', () => clearInterval(this.autoplayInterval));
+					this.next.addEventListener('mouseenter', () => clearInterval(this.autoplayInterval));
+					this.prev.addEventListener('mouseenter', () => clearInterval(this.autoplayInterval));
+				}
+			} catch (error) {
+				console.log(error);
 			}
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	}
 }
