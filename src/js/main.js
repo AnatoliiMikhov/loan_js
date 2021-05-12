@@ -16,6 +16,9 @@ window.addEventListener('DOMContentLoaded', () => {
 	const mainSlider = new MainSlider({ container: '.page', btns: '.next' });
 	mainSlider.render();
 
+	const modulesSlider = new MainSlider({ container: '.moduleapp', btns: '.next' });
+	modulesSlider.render();
+
 	const showUpSlider = new MiniSlider({
 		container: '.showup__content-slider',
 		prev: '.showup__prev',
@@ -25,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 	showUpSlider.init();
 
-	const modulesSlider = new MiniSlider({
+	const cardsSlider = new MiniSlider({
 		container: '.modules__content-slider',
 		prev: '.modules__info-btns .slick-prev',
 		next: '.modules__info-btns .slick-next',
@@ -33,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		animate: true,
 		autoplay: true,
 	});
-	modulesSlider.init();
+	cardsSlider.init();
 
 	const feedSlider = new MiniSlider({
 		container: '.slider-feed__wrapper',
