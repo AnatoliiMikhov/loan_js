@@ -30,9 +30,14 @@ export default class MainSlider extends Slider {
 
 		Array.from(this.slides).forEach((slide) => {
 			slide.style.display = 'none';
+			slide.classList.remove('animated');
+			slide.classList.remove('fadeIn');
 		});
 
 		this.slides[this.slideIndex - 1].style.display = 'block';
+		this.slides[this.slideIndex - 1].style.animationDuration = '0.3s';
+		this.slides[this.slideIndex - 1].classList.add('animated');
+		this.slides[this.slideIndex - 1].classList.add('fadeIn');
 	}
 
 	moveSlide(n) {

@@ -10,6 +10,8 @@ export default class MiniSlider extends Slider {
 	decorizeSlides() {
 		for (let slide of this.slides) {
 			slide.classList.remove(this.activeClass);
+			slide.classList.remove('animated');
+			slide.classList.remove('bounceIn');
 			if (this.animate) {
 				slide.querySelector('.card__title').style.opacity = '0.4';
 				slide.querySelector('.card__controls-arrow').style.opacity = '0';
@@ -17,6 +19,8 @@ export default class MiniSlider extends Slider {
 		}
 
 		this.slides[0].classList.add(this.activeClass);
+		this.slides[0].classList.add('animated');
+		this.slides[0].classList.add('bounceIn');
 
 		try {
 			if (this.animate) {
@@ -35,7 +39,6 @@ export default class MiniSlider extends Slider {
 
 	prevSlide() {
 		let active = this.slides[this.slides.length - 1];
-		// this.container.insertBefore(active, this.slides[0]);
 		this.container.prepend(active);
 		this.decorizeSlides();
 	}
