@@ -13,10 +13,15 @@ window.addEventListener('DOMContentLoaded', () => {
 	/*                                   Sliders                                  */
 	/* -------------------------------------------------------------------------- */
 
-	const mainSlider = new MainSlider({ container: '.page', btns: '.next' });
+	const mainSlider = new MainSlider({ container: '.page', btns: '.page a.next' });
 	mainSlider.render();
 
-	const modulesSlider = new MainSlider({ container: '.moduleapp', btns: '.next' });
+	const modulesSlider = new MainSlider({
+		container: '.moduleapp',
+		btns: '.moduleapp a.next',
+		nextModuleBtns: '.nextmodule',
+		prevModuleBtns: '.prevmodule',
+	});
 	modulesSlider.render();
 
 	const showUpSlider = new MiniSlider({

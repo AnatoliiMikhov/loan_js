@@ -1,8 +1,9 @@
 import Slider from './slider';
 
 export default class MainSlider extends Slider {
-	constructor(btns) {
-		super(btns);
+	constructor(btns, nextModuleBtns, prevModuleBtns) {
+		super(btns, nextModuleBtns, prevModuleBtns);
+		this.linkToFirstSlide = document.querySelectorAll('.sidecontrol > a:first-of-type');
 	}
 
 	showSlides(n) {
@@ -34,36 +35,27 @@ export default class MainSlider extends Slider {
 		this.slides[this.slideIndex - 1].style.display = 'block';
 	}
 
-	plusSlides(n) {
+	moveSlide(n) {
 		this.showSlides((this.slideIndex += n));
 	}
 
-	bindTriggers() {
-		this.btns.forEach((item) => {
-			item.addEventListener('click', () => {
-				this.plusSlides(1);
+	bindTriggers(trigger, n) {
+		trigger.forEach((btn) => {
+			btn.addEventListener('click', (e) => {
+				e.stopPropagation();
+				e.preventDefault();
+				this.moveSlide(n);
 			});
+		});
+	}
 
-			//* Go to slide 1
-			item.parentNode.previousElementSibling.addEventListener('click', (e) => {
+	goToFirstSlide() {
+		this.linkToFirstSlide.forEach((link) => {
+			link.addEventListener('click', (e) => {
+				e.stopPropagation();
 				e.preventDefault();
 				this.slideIndex = 1;
 				this.showSlides(this.slideIndex);
-			});
-		});
-		document.querySelectorAll('.prevmodule').forEach((btn) => {
-			btn.addEventListener('click', (e) => {
-				e.stopPropagation();
-				e.preventDefault();
-				this.plusSlides(-1);
-			});
-		});
-
-		document.querySelectorAll('.nextmodule').forEach((btn) => {
-			btn.addEventListener('click', (e) => {
-				e.stopPropagation();
-				e.preventDefault();
-				this.plusSlides(1);
 			});
 		});
 	}
@@ -75,8 +67,11 @@ export default class MainSlider extends Slider {
 			} catch (error) {}
 
 			this.showSlides(this.slideIndex);
+			this.goToFirstSlide();
 
-			this.bindTriggers();
+			this.bindTriggers(this.btns, 1);
+			this.bindTriggers(this.nextModuleBtns, 1);
+			this.bindTriggers(this.prevModuleBtns, -1);
 		}
 	}
 }
